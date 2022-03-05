@@ -4,6 +4,12 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class Dado generate a Random value between 1 and 6
+ * @author Alejandro Villamil
+ * @author Javier Castrillon
+ * @version v.1.0.0 date 09/12/2021
+ */
 public class Celda extends JButton {
     int fila;
     int columna;
