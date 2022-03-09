@@ -3,8 +3,7 @@ package myProject;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class GUI extends JFrame {
 
     private JFrame view = this;
     private Timer time;
-    private Escucha listen;
+    private EscuchaOwn listen;
     private JTextArea message;
 
     private controllerBattleship control = new controllerBattleship();
@@ -68,8 +67,8 @@ public class GUI extends JFrame {
 
         this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
         //crear el escucha y el timer
-        listen = new Escucha();
-        time = new Timer(1000, listen);
+        listen = new EscuchaOwn();
+        time = new Timer(500, listen);
         view = this;
 
         panelInfo = new JPanel();
@@ -81,7 +80,12 @@ public class GUI extends JFrame {
                         " then press ↑ = W   ↓ = S   → = D   ← = A\n\n"+
                         " This is for put the ship in the place \n"+
                         " selected in the map, and the keys is for\n"+
-                        " the ship's direction");
+                        " the ship's direction\n"+
+                        " The order to place the ships is:\n"+
+                        " 1st 1 aircraft carrier → occupies 4 spaces\n"+
+                        " 2nd 2 submarines → occupy 3 spaces each.\n"+
+                        " 3rd 3 destroyers → occupy 2 spaces each.\n"+
+                        " 4th 4 frigates → occupy 1 space each.\n");
         JScrollPane scroll = new JScrollPane(message);
 
         panelInfo.add(scroll);
@@ -132,16 +136,21 @@ public class GUI extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
-    private class Escucha implements ActionListener {
+    private class EscuchaOwn extends  MouseAdapter implements ActionListener {
+        @Override
+        public void mouseClicked(MouseEvent eventMouse) {
+            // TODO Auto-generated method stub
+            Square squareSelected = (Square) eventMouse.getSource();
+            if(squareSelected.getState() == 0){
+                //Para poner los barcos
 
+            }
+        }
         @Override
         public void actionPerformed(ActionEvent eventAction) {
             /*if(eventAction.getSource() == salir){
-
             }else if(){
-
             }*/
         }
-
     }
 }
