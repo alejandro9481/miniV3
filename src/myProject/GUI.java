@@ -17,12 +17,13 @@ public class GUI extends JFrame {
 
     private Header headerProject;
     private BufferedImage bufferImage;
-    private JPanel panelOwn, panelShot, panelInfo;
-
+    private JPanel panelOwn, panelShot, panelInfo, panelStartN, panelStartS;
+    private ImageIcon icon;
     private JFrame view = this;
     private Timer time;
     private EscuchaOwn listen;
     private JTextArea message;
+    private JButton ingresar, instrucciones, ubicar ,salir;
 
     private controllerBattleship control = new controllerBattleship();
 
@@ -57,6 +58,29 @@ public class GUI extends JFrame {
      * create Listener and control Objects used for the GUI class
      */
     private void initGUI() {
+
+        //Boton y campo
+        ingresar = new JButton("START");
+        instrucciones = new JButton("INSTRUCTIONS");
+
+        JButton[] options = {ingresar,instrucciones};
+        ImageIcon icon = new ImageIcon("src/resources/ships/capitan.png");
+        int x = JOptionPane.showOptionDialog(null, "Welcome to Naval Battle",
+                "Choise a option",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon  , options, options[0]);
+
+        //Boton y campo
+        ubicar = new JButton("LOCATE");
+        salir = new JButton("EXIT");
+
+        JButton[] options2 = {ubicar,salir};
+        int y = JOptionPane.showOptionDialog(null, "In order to start you need to locate \nthe ships on the board, start by selecting\nthe square where you want the first ship to be \npositioned, which is 4 positions.",
+                "Locate",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, icon  , options2, options2[0]);
+
+
+
+
         //Set up JFrame Container's Layout
         //Create Listener Object and Control Object
         //Set up JComponents
