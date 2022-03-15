@@ -25,8 +25,8 @@ public class Square extends JLabel {
     private String nameState;
     private boolean player, view;
 
-    public Square(int fila, int columna,int estado){
-
+    public Square(int fila, int columna,int estado, ImageIcon imagen){
+        setImage(imagen);
         this.column = columna;
         this.row = fila;
         this.state = estado;
@@ -61,6 +61,8 @@ public class Square extends JLabel {
 
             case 4: nameState = "Frame";break;// →→→ Marco del mapa
 
+            case 5: nameState = "Ship";break;// →→→ Barcos en general
+
             default:
         }
         //set's
@@ -70,7 +72,7 @@ public class Square extends JLabel {
     }
 
     public void position(){
-        //Como la imagen es de 200 x 200 va a entrar en una matriz 10 * 10
+        //Como la imagen es de 330 x 330 va a entrar en una matriz 11 * 11
 
         //Para ir montando las imagenes en la posición
         BufferedImage bufferImage = null;
@@ -122,5 +124,5 @@ public class Square extends JLabel {
     public void setState(int state) {this.state = state;}
 
     public ImageIcon getImage() {return image;}
-    public void setImage(ImageIcon image) {setIcon(image);this.image = image;}
+    public void setImage(ImageIcon image) { setIcon(image);this.image = image;}
 }
