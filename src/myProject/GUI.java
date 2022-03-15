@@ -21,7 +21,7 @@ public class GUI extends JFrame {
 
     private JFrame view = this;
     private Timer time;
-    private EscuchaOwn listen;
+    private Escucha listen;
     private JTextArea message;
 
     private controllerBattleship control = new controllerBattleship();
@@ -67,7 +67,7 @@ public class GUI extends JFrame {
 
         this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
         //crear el escucha y el timer
-        listen = new EscuchaOwn();
+        listen = new Escucha();
         time = new Timer(500, listen);
         view = this;
 
@@ -136,7 +136,7 @@ public class GUI extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
-    private class EscuchaOwn extends  MouseAdapter implements ActionListener {
+    private class Escucha extends  MouseAdapter implements ActionListener {
         @Override
         public void mouseClicked(MouseEvent eventMouse) {
             // TODO Auto-generated method stub
@@ -144,7 +144,11 @@ public class GUI extends JFrame {
             if(squareSelected.getState() == 0){
                 //Para poner los barcos
 
+            }else if(){
+
             }
+            revalidate();
+            repaint();
         }
         @Override
         public void actionPerformed(ActionEvent eventAction) {
