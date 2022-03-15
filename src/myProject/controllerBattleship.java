@@ -11,6 +11,7 @@ import java.util.Random;
 public class controllerBattleship implements runnable{
     private Square[][] mapOwn, mapShot;
     private Square proof ;
+    private boolean up, down, left, right;
 
     public controllerBattleship(){
         this.proof = new Square(0,0,0,null);
@@ -71,8 +72,8 @@ public class controllerBattleship implements runnable{
         return other;
     }
 
-    public int verificationMain(Square[][] other,int x, int y){
-        if(x > 6  && y > 6){
+    public int verificationMain(Square[][] other,int x, int y, int numberShip){
+        if(x >= (10-numberShip)  && y >= (10-numberShip)){
 
         }else if(){
 
