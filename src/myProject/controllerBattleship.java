@@ -153,16 +153,20 @@ public class controllerBattleship /*implements runnable*/{
                 if(other[x][y].getState() == 5 ){
                     isPosible = false;
                 } else {
-                    if (other[x + 1][y].getState() == 5 && other[x + 2][y].getState() == 5 ) {
+                    if (other[x + 1][y].getState() == 5 &&
+                            other[x + 2][y].getState() == 5 ) {
                         right = false;
                     } else right = true;
-                    if (other[x - 1][y].getState() == 5 && other[x - 2][y].getState() == 5) {
+                    if (other[x - 1][y].getState() == 5 &&
+                            other[x - 2][y].getState() == 5) {
                         left = false;
                     } else left = true;
-                    if (other[x][y - 1].getState() == 5 && other[x][y - 2].getState() == 5) {
+                    if (other[x][y - 1].getState() == 5 &&
+                            other[x][y - 2].getState() == 5) {
                         down = false;
                     } else down = true;
-                    if (other[x][y + 1].getState() == 5 && other[x][y + 2].getState() == 5) {
+                    if (other[x][y + 1].getState() == 5 &&
+                            other[x][y + 2].getState() == 5) {
                         up = false;
                     } else up = true;
                     isPosible = true;
@@ -172,16 +176,24 @@ public class controllerBattleship /*implements runnable*/{
                 if(other[x][y].getState() == 5 ){
                     isPosible = false;
                 } else {
-                    if (other[x + 1][y].getState() == 5 && other[x + 2][y].getState() == 5 && other[x + 3][y].getState() == 5 ) {
+                    if (other[x + 1][y].getState() == 5 &&
+                            other[x + 2][y].getState() == 5 &&
+                            other[x + 3][y].getState() == 5 ) {
                         right = false;
                     } else right = true;
-                    if (other[x - 1][y].getState() == 5 && other[x - 2][y].getState() == 5 && other[x - 3][y].getState() == 5) {
+                    if (other[x - 1][y].getState() == 5 &&
+                            other[x - 2][y].getState() == 5 &&
+                            other[x - 3][y].getState() == 5) {
                         left = false;
                     } else left = true;
-                    if (other[x][y - 1].getState() == 5 && other[x][y - 2].getState() == 5 && other[x][y - 3].getState() == 5) {
+                    if (other[x][y - 1].getState() == 5 &&
+                            other[x][y - 2].getState() == 5 &&
+                            other[x][y - 3].getState() == 5) {
                         down = false;
                     } else down = true;
-                    if (other[x][y + 1].getState() == 5 && other[x][y + 2].getState() == 5 && other[x][y + 3].getState() == 5) {
+                    if (other[x][y + 1].getState() == 5 &&
+                            other[x][y + 2].getState() == 5 &&
+                            other[x][y + 3].getState() == 5) {
                         up = false;
                     } else up = true;
                     isPosible = true;
