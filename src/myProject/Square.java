@@ -25,6 +25,14 @@ public class Square extends JLabel {
     private String nameState;
     private boolean player, view;
 
+    /**
+     * Este es el controlador y lo que hace es definir la dimension del mismo
+     * y guardar los parametros en las variables privadas
+     * @param fila
+     * @param columna
+     * @param estado
+     * @param imagen
+     */
     public Square(int fila, int columna,int estado, ImageIcon imagen){
         setImage(imagen);
         this.column = columna;
@@ -44,6 +52,10 @@ public class Square extends JLabel {
         this.setIcon(getImage());
     }
 
+    /**
+     * Este metodo lo que hace es dar una imagen y el estado del "Square"
+     * @param i
+     */
     public String infoSquare(int i) {
         setState(i);
         switch (i) {
@@ -71,6 +83,10 @@ public class Square extends JLabel {
         return nameState;
     }
 
+    /**
+     * Este metodo ayuda a definir si estamos en el marco de la imagen o no
+     * y si estamos en el marco pone las letras y numeros en el mismo
+     */
     public void position(){
         //Como la imagen es de 330 x 330 va a entrar en una matriz 11 * 11
 

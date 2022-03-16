@@ -11,7 +11,7 @@ import java.util.Random;
 public class controllerBattleship /*implements runnable*/{
     private Square[][] mapOwn, mapShot;
     private Square proof ;
-    private boolean up, down, left, right;
+    private boolean up, down, left, right, isPosible, shot;
 
     /**
      * Este es el controlador
@@ -108,184 +108,89 @@ public class controllerBattleship /*implements runnable*/{
         return other;
     }
 
-    public int verificationMain(Square[][] other,int x, int y, int numberShip){
-        if((x >= (10-numberShip))  && (y >= (10-numberShip))){
+    /**
+     * Este metodo le da un valor a "other" para poder visualizar el mapa
+     * pero solamente pone el oceano
+     * @param other
+     * @param x                 coordenada x del mapa
+     * @param y                 coordenada y del mapa
+     * @param numberShip              Va del 1 al 4 y define el tamano del barco
+     */
+    public void verificationMain(Square[][] other,int x, int y, int numberShip){
+        switch (numberShip){
+            case 1://Barco de 1 posicion
+                if(other[x][y].getState() == 5){
+                    isPosible = false;
+                } else {
+                    up = false;
+                    left = false;
+                    right = false;
+                    down = false;
+                    isPosible = true;
+                }
+                break;
+            case 2://Barco de 2 posiciones
+                if(other[x][y].getState() == 5 ){
+                    isPosible = false;
+                } else {
+                    if (other[x + 1][y].getState() == 5 ) {
+                        right = false;
+                    } else right = true;
+                    if (other[x - 1][y].getState() == 5) {
+                        left = false;
+                    } else left = true;
+                    if (other[x][y - 1].getState() == 5) {
+                        down = false;
+                    } else down = true;
+                    if (other[x][y + 1].getState() == 5) {
+                        up = false;
+                    } else up = true;
+                    isPosible = true;
+                }
+                break;
+
+            case 3://Barco de 3 posiciones
+                if(other[x][y].getState() == 5 ){
+                    isPosible = false;
+                } else {
+                    if (other[x + 1][y].getState() == 5 && other[x + 2][y].getState() == 5 ) {
+                        right = false;
+                    } else right = true;
+                    if (other[x - 1][y].getState() == 5 && other[x - 2][y].getState() == 5) {
+                        left = false;
+                    } else left = true;
+                    if (other[x][y - 1].getState() == 5 && other[x][y - 2].getState() == 5) {
+                        down = false;
+                    } else down = true;
+                    if (other[x][y + 1].getState() == 5 && other[x][y + 2].getState() == 5) {
+                        up = false;
+                    } else up = true;
+                    isPosible = true;
+                }
+                break;
+            case 4://Barco de 4 posiciones
+                if(other[x][y].getState() == 5 ){
+                    isPosible = false;
+                } else {
+                    if (other[x + 1][y].getState() == 5 && other[x + 2][y].getState() == 5 && other[x + 3][y].getState() == 5 ) {
+                        right = false;
+                    } else right = true;
+                    if (other[x - 1][y].getState() == 5 && other[x - 2][y].getState() == 5 && other[x - 3][y].getState() == 5) {
+                        left = false;
+                    } else left = true;
+                    if (other[x][y - 1].getState() == 5 && other[x][y - 2].getState() == 5 && other[x][y - 3].getState() == 5) {
+                        down = false;
+                    } else down = true;
+                    if (other[x][y + 1].getState() == 5 && other[x][y + 2].getState() == 5 && other[x][y + 3].getState() == 5) {
+                        up = false;
+                    } else up = true;
+                    isPosible = true;
+                }
+                break;
 
         }
-        return 1;
+
     }
-
-    /*public void shipsInMap(Square[][] other, int direction, int ship, int x, int y) {
-        //Para ir montando las imagenes en la posición
-        BufferedImage[] image = null;
-        try{
-            image[0] = ImageIO.read(new File("src/resources/ships/ship_1.png"));
-            image[1] = ImageIO.read(new File("src/resources/ships/ship_2.png"));
-            image[2] = ImageIO.read(new File("src/resources/ships/ship_3.png"));
-            image[3] = ImageIO.read(new File("src/resources/ships/ship_4.png"));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo");
-        }
-
-        int k = Square.getSquareSize();
-
-        switch (direction) {
-            case 1://Arriba -- UP
-                switch (ship) {
-                    case 1://barco de 1 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        break;
-
-                    case 2://barco de 2 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y-1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        break;
-
-                    case 3://barco de 3 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y-1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x][y-2] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        break;
-
-                    case 4://barco de 4 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y-1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x][y-2] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        other[x][y-3] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*3, 0, k, k)));
-                        break;
-
-                    default:
-                }
-                break;
-
-            case 2://Izquierda -- LEFT
-                switch (ship) {
-                    case 1://barco de 1 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        break;
-
-                    case 2://barco de 2 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x-1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        break;
-
-                    case 3://barco de 3 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x-1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x-2][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        break;
-
-                    case 4://barco de 4 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x-1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x-2][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        other[x-3][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*3, 0, k, k)));
-                        break;
-
-                    default:
-                }
-                break;
-
-            case 3://Abajo -- DOWN
-                switch (ship) {
-                    case 1://barco de 1 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        break;
-
-                    case 2://barco de 2 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y+1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        break;
-
-                    case 3://barco de 3 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y+1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x][y+2] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        break;
-
-                    case 4://barco de 4 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x][y+1] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x][y+2] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        other[x][y+3] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*3, 0, k, k)));
-                        break;
-
-                    default:
-                }
-                break;
-
-            case 4://Derecha -- RIGHT
-                switch (ship) {
-                    case 1://barco de 1 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        break;
-
-                    case 2://barco de 2 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x+1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        break;
-
-                    case 3://barco de 3 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x+1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x+2][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        break;
-
-                    case 4://barco de 4 espacio --
-                        other[x][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*0, 0, k, k)));
-                        other[x+1][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*1, 0, k, k)));
-                        other[x+2][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*2, 0, k, k)));
-                        other[x+3][y] = new Square( x, y,5,
-                                new ImageIcon(image[ship-1].getSubimage(k*3, 0, k, k)));
-                        break;
-
-                    default:
-                }
-                break;
-
-            default:
-        }
-    }*/
 
     /**
      * Este metodo le da un valor a "other" para poder visualizar el mapa
@@ -445,12 +350,20 @@ public class controllerBattleship /*implements runnable*/{
         }
     }
 
+    /**
+     * Este metodo retorna un valor entre 1 a 10
+     * @return random
+     */
     public int randomNumber10(){
         Random aleatorio = new Random();
         int random = aleatorio.nextInt(10) + 1;
         return random;
     }
 
+    /**
+     * Este metodo retorna un valor entre 1 a 4
+     * @return random
+     */
     public int randomNumber4(){
         Random aleatorio = new Random();
         int random = aleatorio.nextInt(4) + 1;

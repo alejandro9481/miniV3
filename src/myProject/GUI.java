@@ -53,8 +53,8 @@ public class GUI extends JFrame {
     }
 
     /**
-     * This method is used to set up the default JComponent Configuration,
-     * create Listener and control Objects used for the GUI class
+     * Este metodo es usado para poner las configuraciones predeterminadas,
+     * crear "Listener's" y los objeto "control" usado por el metodo "beginning"
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
@@ -93,6 +93,11 @@ public class GUI extends JFrame {
         beginning();
     }
 
+    /**
+     * Este metodo es usado para poner las configuraciones predeterminadas,
+     * crear "Listener's" y los objeto "control" usado por la clase "GUI"
+     * Este es usado para la interfaz del juego
+     */
     public void beginning(){
         //JPanel que se muestra al inicio del programa
         panelOwn = new JPanel();
@@ -141,6 +146,7 @@ public class GUI extends JFrame {
         public void mouseClicked(MouseEvent eventMouse) {
             // TODO Auto-generated method stub
             Square squareSelected = (Square) eventMouse.getSource();
+
             if(squareSelected.getState() == 0){
 
             }else if(squareSelected.getState() == 1){
