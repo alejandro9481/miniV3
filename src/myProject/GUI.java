@@ -24,7 +24,7 @@ public class GUI extends JFrame {
     private Escucha listen;
     private JTextArea message;
 
-    private controllerBattleship control = new controllerBattleship();
+    private controllerBattleship control = new controllerBattleship(0);
 
     /**
      * Constructor of GUI class
@@ -142,9 +142,16 @@ public class GUI extends JFrame {
             // TODO Auto-generated method stub
             Square squareSelected = (Square) eventMouse.getSource();
             if(squareSelected.getState() == 0){
-                //Para poner los barcos
 
-            }else if(){
+            }else if(squareSelected.getState() == 1){
+
+            }else if(squareSelected.getState() == 2){
+
+            }else if(squareSelected.getState() == 3){
+
+            }else if(squareSelected.getState() == 4){
+
+            }else if(squareSelected.getState() == 5){
 
             }
             revalidate();

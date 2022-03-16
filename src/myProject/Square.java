@@ -99,10 +99,10 @@ public class Square extends JLabel {
 
         }else{
             //Para establecer una pocisión en la imagen
-            int x = row*SQUIARESIZE;
-            int y = column*SQUIARESIZE;
+            int x = column*SQUIARESIZE;
+            int y = row*SQUIARESIZE;
 
-            BufferedImage subImage = bufferImage.getSubimage(y, x, SQUIARESIZE, SQUIARESIZE);
+            BufferedImage subImage = bufferImage.getSubimage(x, y, SQUIARESIZE, SQUIARESIZE);
             image = new ImageIcon(subImage);
             setImage(image);
         }
